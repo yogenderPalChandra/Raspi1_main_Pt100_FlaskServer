@@ -1,0 +1,563 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> Data Sensor</title>
+    <link rel="stylesheet" href='../static/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+                body {
+                        text-align: center;
+                }
+
+                #g1,
+                #g2,
+                #g3,
+                #g4,
+                #g5,
+                #g6,
+                #g7,
+                #g8,
+                #g9,
+                #g10{
+                        width: 200px;
+                        height: 160px;
+                        display: inline-block;
+                        margin: 1em;
+                }
+
+    </style>
+</head>
+
+<body>
+
+        <h1> Sensor Data </h1>
+    <div id="g1"></div>
+    <div id="g2"></div>
+    <div id="g3"></div>
+    <div id="g4"></div>
+    <div id="g5"></div>
+    <div id="g6"></div>
+    <div id="g7"></div>
+    <div id="g8"></div>
+    <div id="g9"></div>
+    <div id="g10"></div>
+    <hr>
+        <h3> Last Sensors Reading: {{ time }} ==> <a href="/"class="button">REFRESH</a></h3>
+        <hr>
+        <h3> Full Data Coverage </h3>
+                <p> Enter number of samples to retrieve:
+                <form method="POST">
+                        <input name="numSamples" value= {{numSamples}}>
+                        <input type="submit">
+                </form></p>
+                <hr>
+                <img src="/plot/temp" alt="Image Placeholder" height="50%" width="50%">
+
+        <p> @2020 Developed by Yogender</p>
+
+    <script src="../static/raphael-2.1.4.min.js"></script>
+    <script src="../static/justgage.js"></script>
+    <script>
+                var g1, g2, g3, g4, g5, g6, g7, g8, g9, g10;
+                document.addEventListener("DOMContentLoaded", function(event) {
+                        g1 = new JustGage({
+                                id: "g1",
+                                value: {{TemTopSource}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Top source tank",
+                                label: "Celcius"
+                        });
+                        g2 = new JustGage({
+                                id: "g2",
+                                value: {{sourcetankbottomtemp}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "bottom source tank",
+                                label: "Celcius"
+                        });
+                        g3 = new JustGage({
+                                id: "g3",
+                                value: {{TopTestingtemHPcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "top testing  HP circuit",
+                                label: "Celcius"
+                        });
+
+                        g4 = new JustGage({
+                                id: "g4",
+                                value: {{BottomtestingtemHPcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Bottom testing  HP circuit",
+                                label: "Celcius"
+                        });
+
+                        g5 = new JustGage({
+                                id: "g5",
+                                value: {{Toptemoftestingtankloadcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Top testing  load circuit",
+                                label: "Celcius"
+                        });
+                        g6 = new JustGage({
+                                id: "g6",
+                                value: {{Testingbottomloadcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Bottom testing  load circuit",
+                                label: "Celcius"
+                            
+
+                        });
+                        g7 = new JustGage({
+                                id: "g7",
+                                value: {{LoadtankTem}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Load tank tem",
+                                label: "Celcius"
+                        });
+                        g8 = new JustGage({
+                                id: "g8",
+                                value: {{Mixtematload}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Mix tem at load",
+                                label: "Celcius"
+
+                        });
+                        g9 = new JustGage({
+                                id: "g9",
+                                value: {{FlowHP}},
+                                valueFontColor: "Red",
+                                titleFontColor: "Red",
+                                min: -5,
+                                max: 4000,
+                                title: "Flow HP",
+                                label: "L/H"
+
+                        });
+                        g10 = new JustGage({
+                                id: "g10",
+                                value: {{FlowLoad}},
+                                valueFontColor: "Red",
+                                titleFontColor: "Red",
+                                min: -5,
+                                max: 1000,
+                                title: "Load",
+                                label: "L/H"
+
+                        });
+
+
+
+                });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<!doctype html>
+<html>
+
+<head>
+    <title> Data Sensor</title>
+    <link rel="stylesheet" href='../static/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+                body {
+                        text-align: center;
+                }
+
+                #g1,
+                #g2,
+                #g3,
+                #g4,
+                #g5,
+                #g6,
+                #g7,
+                #g8{
+                        width: 200px;
+                        height: 160px;
+                        display: inline-block;
+                        margin: 1em;
+                }
+
+    </style>
+</head>
+
+<body>
+
+        <h1> Sensor Data </h1>
+    <div id="g1"></div>
+    <div id="g2"></div>
+    <div id="g3"></div>
+    <div id="g4"></div>
+    <div id="g5"></div>
+    <div id="g6"></div>
+    <div id="g7"></div>
+    <div id="g8"></div>
+    <hr>
+        <h3> Last Sensors Reading: {{ time }} ==> <a href="/"class="button">REFRESH</a></h3>
+        <hr>
+        <h3> Full Data Coverage </h3>
+                <p> Enter number of samples to retrieve:
+                <form method="POST">
+                        <input name="numSamples" value= {{numSamples}}>
+                        <input type="submit">
+                </form></p>
+                <hr>
+                <img src="/plot/temp" alt="Image Placeholder" height="50%" width="50%">
+
+        <p> @2020 Developed by Yogender</p>
+
+    <script src="../static/raphael-2.1.4.min.js"></script>
+    <script src="../static/justgage.js"></script>
+    <script>
+                var g1, g2, g3, g4, g5, g6, g7, g8;
+                document.addEventListener("DOMContentLoaded", function(event) {
+                        g1 = new JustGage({
+                                id: "g1",
+                                value: {{TemTopSource}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Top source tank",
+                                label: "Celcius"
+                        });
+                        g2 = new JustGage({
+                                id: "g2",
+                                value: {{sourcetankbottomtemp}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "bottom source tank",
+                                label: "Celcius"
+                        });
+                        g3 = new JustGage({
+                                id: "g3",
+                                value: {{TopTestingtemHPcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "top testing  HP circuit",
+                                label: "Celcius"
+                        });
+
+                        g4 = new JustGage({
+                                id: "g4",
+                                value: {{BottomtestingtemHPcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Bottom testing  HP circuit",
+                                label: "Celcius"
+                        });
+
+                        g5 = new JustGage({
+                                id: "g5",
+                                value: {{Toptemoftestingtankloadcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Top testing  load circuit",
+                                label: "Celcius"
+                        });
+                        g6 = new JustGage({
+                                id: "g6",
+                                value: {{Testingbottomloadcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Bottom testing  load circuit",
+                                label: "Celcius"
+                            
+
+                        });
+                        g7 = new JustGage({
+                                id: "g7",
+                                value: {{LoadtankTem}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Load tank tem",
+                                label: "Celcius"
+                        });
+                        g8 = new JustGage({
+                                id: "g8",
+                                value: {{Mixtematload}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "Mix tem at load",
+                                label: "Celcius"
+
+                        });
+
+
+                });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+-->
+
+
+
+
+
+
+<!--
+<!doctype html>
+<html>
+
+<head>
+    <title> Data Sensor</title>
+    <link rel="stylesheet" href='../static/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+                body {
+                        text-align: center;
+                }
+
+                #g1,
+                #g2,
+                #g3,
+                #g4,
+                #g5
+                #g6 {
+                        width: 200px;
+                        height: 160px;
+                        display: inline-block;
+                        margin: 1em;
+                }
+
+    </style>
+</head>
+
+<body>
+
+        <h1> Sensor Data </h1>
+    <div id="g1"></div>
+    <div id="g2"></div>
+    <div id="g3"></div>
+    <div id="g4"></div>
+    <div id="g5"></div>
+    <div id="g6"></div>
+    <hr>
+        <h3> Last Sensors Reading: {{ time }} ==> <a href="/"class="button">REFRESH</a></h3>
+        <hr>
+        <h3> Full Data Coverage </h3>
+                <p> Enter number of samples to retrieve:
+                <form method="POST">
+                        <input name="numSamples" value= {{numSamples}}>
+                        <input type="submit">
+                </form></p>
+                <hr>
+                <img src="/plot/temp" alt="Image Placeholder" height="50%" width="50%">
+
+        <p> @2020 Developed by Yogender</p>
+
+    <script src="../static/raphael-2.1.4.min.js"></script>
+    <script src="../static/justgage.js"></script>
+    <script>
+                var g1, g2, g3, g4, g5, g6;
+                document.addEventListener("DOMContentLoaded", function(event) {
+                        g1 = new JustGage({
+                                id: "g1",
+                                value: {{TemTopSource}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: -10,
+                                max: 100,
+                                title: "Top source tank",
+                                label: "Celcius"
+                        });
+                        g2 = new JustGage({
+                                id: "g2",
+                                value: {{sourcetankbottomtemp}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: 0,
+                                max: 100,
+                                title: "bottom source tank",
+                                label: "Celcius"
+                        });
+                        g3 = new JustGage({
+                                id: "g3",
+                                value: {{TopTestingtemHPcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: -10,
+                                max: 100,
+                                title: "top testing  HP circuit",
+                                label: "Celcius"
+                        });
+                        
+                        g4 = new JustGage({
+                                id: "g4",
+                                value: {{BottomtestingtemHPcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: -10,
+                                max: 100,
+                                title: "Bottom testing  HP circuit",
+                                label: "Celcius"
+                        });
+                        
+                        g5 = new JustGage({
+                                id: "g4",
+                                value: {{Toptemoftestingtankloadcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: -10,
+                                max: 100,
+                                title: "Top testing  load circuit",
+                                label: "Celcius"
+                        });
+                        g6 = new JustGage({
+                                id: "g4",
+                                value: {{Testingbottomloadcircuit}},
+                                valueFontColor: "yellow",
+                                titleFontColor: "yellow",
+                                min: -10,
+                                max: 100,
+                                title: "Bottom testing  load circuit",
+                                label: "Celcius"
+                        
+                        });
+                });
+    </script>
+</body>
+
+</html>
+
+-->
+
+
+
+
+
+
+
+<!--
+<!doctype html>
+<html>
+
+<head>
+    <title> Data Sensor</title>
+    <link rel="stylesheet" href='../static/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		body {
+			text-align: center;
+		}
+
+		#g1,
+		#g2 {
+			width: 200px;
+			height: 160px;
+			display: inline-block;
+			margin: 1em;
+		}
+
+    </style>
+</head>
+
+<body>
+	<h1> Sensor Data </h1>
+    <div id="g1"></div>
+    <div id="g2"></div>
+    <hr>
+	<h3> Last Sensors Reading: {{ time }} ==> <a href="/"class="button">REFRESH</a></h3>	
+	<hr>
+	<h3> Full Data Coverage </h3>
+		<p> Enter number of samples to retrieve:
+		<form method="POST">
+			<input name="numSamples" value= {{numSamples}}>
+			<input type="submit">
+		</form></p>
+		<hr>
+		<img src="/plot/temp" alt="Image Placeholder" height="50%" width="50%">
+	
+	<p> @2020 Developed by Yogender</p>
+    
+    <script src="../static/raphael-2.1.4.min.js"></script>
+    <script src="../static/justgage.js"></script>
+    <script>
+		var g1, g2;
+		document.addEventListener("DOMContentLoaded", function(event) {
+			g1 = new JustGage({
+				id: "g1",
+				value: {{StratT1}},
+				valueFontColor: "yellow",
+				titleFontColor: "yellow",
+				min: -10,
+				max: 100,
+				title: "Temperature",
+				label: "Celcius"
+			});
+
+			g2 = new JustGage({
+				id: "g2",
+				value: {{AmbientTem}},
+				valueFontColor: "yellow",
+				titleFontColor: "yellow",
+				min: 0,
+				max: 100,
+				title: "Ambient Tem",
+				label: "Celcius"
+			});
+
+		});
+    </script>
+</body>
+
+</html>
+
+-->
+
