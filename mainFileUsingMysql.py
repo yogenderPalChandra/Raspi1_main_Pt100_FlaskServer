@@ -19,7 +19,7 @@ conn = mysql.connector.connect(
   database="TemaccessToRemoteRp2"
 )
 
-#print(db_connection)
+#print(conn)
 
 
 c = conn.cursor()
@@ -30,9 +30,9 @@ c = conn.cursor()
 date=time.strftime("%Y-%m-%d ")
 t=time.strftime("%H:%M:%S")
 
+#print (date)
 
-
-
+#print (c)
 # Initialize SPI bus and sensor.
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
 cs1 = digitalio.DigitalInOut(board.D4)  # Chip select of the MAX31865 board.
@@ -75,6 +75,8 @@ sensor16 = adafruit_max31865.MAX31865(spi, cs16,  wires=4)
 sensor17 = adafruit_max31865.MAX31865(spi, cs17,  wires=4)
 sensor18 = adafruit_max31865.MAX31865(spi, cs18,  wires=4)
 sensor19 = adafruit_max31865.MAX31865(spi, cs19,  wires=4)
+
+#print (date)
 # Note you can optionally provide the thermocouple RTD nominal, the reference
 # resistance, and the number of wires for the sensor (2 the default, 3, or 4)
 # with keyword args:
@@ -84,21 +86,17 @@ sensor19 = adafruit_max31865.MAX31865(spi, cs19,  wires=4)
 #sql = 'DROP TABLE IF EXISTS temSensor;'
 c.execute('DROP TABLE IF EXISTS temSensor;')
 print ('table deleted')
-
+#print (data)
 
 c.execute('CREATE TABLE temSensor(id INT AUTO_INCREMENT PRIMARY KEY, ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP, Temp1d4 FLOAT, Temp2d5 FLOAT, Temp3d6 FLOAT, \
 Temp4d13 FLOAT,  Temp5d19 FLOAT, Temp6d26 FLOAT, Temp7d21 FLOAT,Temp8d20 FLOAT,Temp9d16 FLOAT, \
 Temp10d12 FLOAT,Temp11d1 FLOAT,Temp12d7 FLOAT, Temp13d8 FLOAT,Temp14d24 FLOAT,\
-Temp15d23 FLOAT, Temp16d18 FLOAT,Temp17d15 FLOAT, Temp18d14 FLOAT,Temp19d2 FLOAT);')
+Temp15d23 FLOAT, Temp16d18 FLOAT,Temp17d15 FLOAT, Temp18d14 FLOAT,Temp19d2 FLOAT) ENGINE=MyISAM;')
 #c.execute('CREATE TABLE temSensor(id INT AUTO_INCREMENT PRIMARY KEY, Temp1d4 FLOAT, Temp2d5 FLOAT, Temp3d6 FLOAT, \
 #Temp4d13 FLOAT,  Temp5d19 FLOAT, Temp6d26 FLOAT, Temp7d21 FLOAT,Temp8d20 FLOAT,Temp9d16 FLOAT, \
 #Temp10d12 FLOAT,Temp11d1 FLOAT,Temp12d7 FLOAT, Temp13d8 FLOAT,Temp14d24 FLOAT,\
 #Temp15d23 FLOAT, Temp16d18 FLOAT,Temp17d15 FLOAT, Temp18d14 FLOAT,Temp19d2 FLOAT,Date DATE,Time TIME);')
-conn.commit()
-
-
-
-
+#conn.commit()
 
 while True:
     # Read temperature.
@@ -128,10 +126,18 @@ while True:
     #c.execute('CREATE TABLE temSensor(id INTEGER PRIMARY KEY AUTOINCREMENT, Temp1 NUMERIC,Temp2 NUMERIC, Date DATE, Time TIME);')
     #c.execute(sql)
     #conn.commit()
+
     c.execute("INSERT INTO temSensor(Temp1d4, Temp2d5, Temp3d6,Temp4d13, \
     Temp5d19, Temp6d26,Temp7d21,Temp8d20, Temp9d16, Temp10d12,Temp11d1,Temp12d7,Temp13d8,Temp14d24, \
     Temp15d23, Temp16d18,Temp17d15, Temp18d14,Temp19d2) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s, %s,%s)",\
     (temp1, temp2,temp3,temp4,temp5,temp6, temp7, temp8, temp9, temp10, temp11,temp12, temp13, temp14, temp15,temp16, temp17,temp18, temp19))
+    '''
+
+    c.execute("ALTER TABLE  temSensor(Temp1d4, Temp2d5, Temp3d6,Temp4d13, \
+    Temp5d19, Temp6d26,Temp7d21,Temp8d20, Temp9d16, Temp10d12,Temp11d1,Temp12d7,Temp13d8,Temp14d24, \
+    Temp15d23, Temp16d18,Temp17d15, Temp18d14,Temp19d2) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s, %s,%s)",\
+    (temp1, temp2,temp3,temp4,temp5,temp6, temp7, temp8, temp9, temp10, temp11,temp12, temp13, temp14, temp15,temp16, temp17,temp18, temp19))
+    '''
 
     #CREATE TABLE temSensor(id INTEGER PRIMARY KEY AUTOINCREMENT, Temp1 NUMERIC,Temp2 NUMERIC, Date DATE, Time TIME);
     #c.execute("INSERT INTO temSensor(Temp1d4, Temp2d5, Temp3d6,Temp4d13, \
@@ -150,12 +156,13 @@ while True:
     print ('Mix tem at load:', temp7)
     print('--------------------------')
     #print(stdout)
-    sleep(0.1)
+    #sleep(0.1)
     #print("Temperature sensor1: {0:0.3f}C".format(temp1))
     #print("Temperature sensor 2: {0:0.3f}C".format(temp2))
     #print (type(temp1))
     # Delay for a second.
-    #time.sleep(1.0)
+    time.sleep(0.1)
+conn.close()
 '''
 while True:
     # Read temperature.
