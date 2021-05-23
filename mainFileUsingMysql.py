@@ -161,7 +161,7 @@ while True:
     #print("Temperature sensor 2: {0:0.3f}C".format(temp2))
     #print (type(temp1))
     # Delay for a second.
-    time.sleep(0.1)
+    time.sleep(0.001)
 conn.close()
 '''
 while True:
