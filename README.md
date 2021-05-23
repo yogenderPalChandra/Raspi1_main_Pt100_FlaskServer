@@ -6,6 +6,6 @@ This server take the data dynamically, calculates/analyse and plots the data  us
 #### Raspi1_main_Pt100_FlaskServer
 
 
-### *This is how the live datastreaming gif using Jupyter notebook looks like:*
+###*This is how the live datastreaming gif using Jupyter notebook looks like:*
 
 ![](out.gif)
